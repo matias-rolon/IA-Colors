@@ -1,49 +1,37 @@
 import cv2
+import numpy as np
 from PIL import Image
 
-from util import get_limits
-
-# Solicitar al usuario que ingrese su nombre
-#nombre = input("Por favor, ingresa tu nombre: ")
-
-# Mostrar un saludo personalizado
-#print("¡Hola,", nombre, "! Bienvenido.")
-
-
 # Solicitar al usuario que ingrese los valores RGB separados por comas o espacios
-entrada = input("Ingrese los valores BGR (B G R) separados por espacios: ")
-
-# Dividir la entrada en una lista de valores
-valores = entrada.split()
-
-# Convertir los valores a enteros
-b, g, r = map(int, valores)
+#entrada = input("Ingrese los valores BGR (B G R) separados por espacios: ")
+#valores = entrada.split() # Dividir la entrada en una lista de valores
+#b, g, r = map(int, valores) # Convertir los valores a enteros
 
 # Comprobar si los valores están dentro del rango válido
-if 0 <= r <= 255 and 0 <= g <= 255 and 0 <= b <= 255:
-    dato_color = (b, g ,r)
-    print("Valores RGB ingresados:", dato_color)
-else:
-    print("Los valores RGB deben estar en el rango de 0 a 255.")
+#if 0 <= r <= 255 and 0 <= g <= 255 and 0 <= b <= 255:
+#    dato_color = (b, g ,r)
+#    print("Valores RGB ingresados:", dato_color)
+#else:
+#    print("Los valores RGB deben estar en el rango de 0 a 255.")
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(0) # 0 camara local, 1 camara secundaria(celu), 2(otra), etc...
 
-cap.set(3, 640)  # Configura el ancho del fotograma a 640 píxeles
-cap.set(4, 480)  # Configura el alto del fotograma a 480 píxeles
+cap.set(3, 720)  # Configura el ancho del fotograma en píxeles
+cap.set(4, 480)  # Configura el alto del fotograma en píxeles
 
 # Tamaño deseado para la ventana de visualización
-nuevo_ancho = 800
-nuevo_alto = 600
+nuevo_ancho = 720
+nuevo_alto = 480
 # Cambia el tamaño de la ventana de visualización
 cv2.namedWindow("Ventana de Visualizacion", cv2.WINDOW_NORMAL)  # Establece la ventana en modo redimensionable
-cv2.resizeWindow("Ventana de Visualizacion", nuevo_ancho, nuevo_alto)
+# Configurar la ventana para que sea redimensionable
+cv2.setWindowProperty("Ventana de Visualizacion", cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
 
 while True:
     ret, display = cap.read()
 
     hsvImage = cv2.cvtColor(display, cv2.COLOR_BGR2HSV)
 
-    lowerLimit, upperLimit = get_limits(color=dato_color)
 
     mask = cv2.inRange(hsvImage, lowerLimit, upperLimit)
 
