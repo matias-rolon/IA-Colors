@@ -44,7 +44,7 @@ while True:
     if bbox is not None:
         x1, y1, x2, y2 = bbox
 
-        display = cv2.rectangle(display, (x1, y1), (x2, y2), dato_color, 2)
+        display = cv2.rectangle(display, (x1, y1), (x2, y2), (255,255,255), 2)
 
         # Agregar texto al rectángulo
         text = "Objeto "
