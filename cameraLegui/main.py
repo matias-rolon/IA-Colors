@@ -11,7 +11,7 @@ from util import get_limits
 
 
 # Solicitar al usuario que ingrese los valores RGB separados por comas o espacios
-entrada = input("Ingrese los valores RGB (R G B) separados por espacios: ")
+entrada = input("Ingrese los valores BGR (B G R) separados por espacios: ")
 
 # Dividir la entrada en una lista de valores
 valores = entrada.split()
@@ -21,12 +21,22 @@ b, g, r = map(int, valores)
 
 # Comprobar si los valores están dentro del rango válido
 if 0 <= r <= 255 and 0 <= g <= 255 and 0 <= b <= 255:
-    dato_color = (r,g,b)
+    dato_color = (b, g ,r)
     print("Valores RGB ingresados:", dato_color)
 else:
     print("Los valores RGB deben estar en el rango de 0 a 255.")
 
 cap = cv2.VideoCapture(0)
+
+cap.set(3, 640)  # Configura el ancho del fotograma a 640 píxeles
+cap.set(4, 480)  # Configura el alto del fotograma a 480 píxeles
+
+# Tamaño deseado para la ventana de visualización
+nuevo_ancho = 800
+nuevo_alto = 600
+# Cambia el tamaño de la ventana de visualización
+cv2.namedWindow("Ventana de Visualizacion", cv2.WINDOW_NORMAL)  # Establece la ventana en modo redimensionable
+cv2.resizeWindow("Ventana de Visualizacion", nuevo_ancho, nuevo_alto)
 
 while True:
     ret, display = cap.read()
@@ -47,13 +57,13 @@ while True:
         display = cv2.rectangle(display, (x1, y1), (x2, y2), (255,255,255), 2)
 
         # Agregar texto al rectángulo
-        text = "Objeto "
+        text = "Objeto"
         font = cv2.FONT_HERSHEY_SIMPLEX
-        cv2.putText(display, text, (x1, y1 - 10), font, 0.5, (0, 0, 255), 1, cv2.LINE_AA)
+        cv2.putText(display, text, (x1, y1 - 10), font, 0.5, dato_color, 1, cv2.LINE_AA)
 
-    cv2.imshow('display', display)
-
-    if cv2.waitKey(1) == ord('s'):
+    cv2.imshow("Ventana de Visualizacion", display)
+    k = cv2.waitKey(1)
+    if k == 's':
         break
 
 cap.release()
