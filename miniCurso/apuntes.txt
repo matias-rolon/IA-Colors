@@ -1,0 +1,15 @@
+HSV = Hue Saturation Value( matiz saturacion brillo)
+
+en Open CV los valores van de :
+H: 0 - 179
+S: 0 - 255
+v: 0 - 255
+
+1.los pasos serian definir si se va a leer una imagen o un video en vivo
+2. pasar img de bgr a hsv con cv2.cvtcolor( src , cv2.color_bgr2hsv )
+3. proporcionar rangos de colores que deseamos detectar.
+4. visualizar LA DETTECION DE COLORES.
+
+Factores importantes 
+Iluminacion: actua de buena o mala manera en nuestros resultados.
+Fondo: si en el fondo hay demasiado color vamos a generar resultados equivocados , si esto se puede controlar sera mejor.
