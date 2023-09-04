@@ -12,7 +12,11 @@ while True:
         hsv_video = cv.cvtColor(video,cv.COLOR_BGR2HSV)
 
         frame_threshed = cv.inRange(hsv_video, NARANJA_MIN, NARANJA_MAX)
-        cv.imshow('VIDEO', frame_threshed)
+
+        cv.imshow('Ventana video Original', video)
+        cv.imshow('Ventana video HSV', hsv_video)
+        cv.imshow('VENTANA video Resultado', frame_threshed)
+        
         if cv.waitKey(1) == ord('s'):
             break
 
