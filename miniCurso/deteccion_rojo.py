@@ -22,8 +22,8 @@ while True:
     video_redimensionado = cv.resize(video, (nuevo_ancho, nuevo_alto))
 
     if hayvideo == True:
-        videoHSV = cv.cvtColor(video_redimensionado, cv.COLOR_RGB2HSV)
-        mascara_rojo1 = cv.inRange( videoHSV, rojo_bajo1, rojo_alto1)
+        videoHSV = cv.cvtColor(video_redimensionado, cv.COLOR_RGB2HSV) # paso el video a HSV(HUE SATURATION VALUE)
+        mascara_rojo1 = cv.inRange( videoHSV, rojo_bajo1, rojo_alto1) #CREO LAS MASCARAS DE ROJO
         mascara_rojo2 = cv.inRange( videoHSV, rojo_bajo2, rojo_alto2)
         mascara_rojo = cv.add(mascara_rojo1, mascara_rojo2)
 
