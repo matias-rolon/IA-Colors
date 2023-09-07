@@ -18,6 +18,13 @@ AZUL_MAX = np.array([128, 255, 255],np.uint8)
 VERDE_MIN = np.array([45, 40, 70],np.uint8)
 VERDE_MAX = np.array([80, 255, 255],np.uint8)
 
+#Rojo
+ROJO_BAJO1 = np.array([0,110,26], np.uint8)
+ROJO_ALTO1 = np.array([6,255,255], np.uint8)
+
+ROJO_BAJO2 = np.array([177,110,26], np.uint8)
+ROJO_ALTO2 = np.array([179,255,255], np.uint8)
+
 while True:
     hayvideo, video = cap.read() # Obtengo video en vivo si hayvideo es true => hay video
     if hayvideo:
@@ -40,7 +47,7 @@ while True:
         if DEBUG_HSV == True :
             cv.imshow('Ventana video HSV', hsv_video)
 
-        if cv.waitKey(1) == ord('s'): # Si es presionada durante 1ms la tecla 'S' ord() devuelve el valor que es comparado con waitKey(1) y el programa sale del while
+        if cv.waitKey(1) == ord('esc'): # Si es presionada durante 1ms la tecla 'S' ord() devuelve el valor que es comparado con waitKey(1) y el programa sale del while
             break
 
 cap.release()# Liberar la captura de video y cerrar la cámara

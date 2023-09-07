@@ -19,7 +19,7 @@ def dibujar(contornos, video, text):
                 font = cv.FONT_HERSHEY_SIMPLEX
 
                 cv.circle(video, (x, y), 5, (255,255,255), -1)
-                cv.putText(video, text, (x, y+200), font, 1, (255,255,255), 3, cv.LINE_AA)
+                cv.putText(video, text, (x, y+200), font, 1, (0,0,0), 5, cv.LINE_AA)
                 contorno_suavisado = cv.convexHull(c)
                 cv.drawContours(video ,[contorno_suavisado], 0 , (0,0,0) , 10)
                 
