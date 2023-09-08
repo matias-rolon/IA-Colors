@@ -19,8 +19,16 @@ objeto = cv.imread('objeto1.jpg', 0)
 recorte= objeto[160:300, 230:380]
 cv.imshow(" recorte de objeto",recorte)
 
+#Segunda imagen pero con otros objetos
 while True:
     hayvideo, video2 = cap.read() # Obtengo video en vivo si hayvideo es true => hay video
     cv.imshow("Deteccion", video2)  #MUESTRO POR VENTANA
+    if cv.waitKey(1) == ord('c'): # Si es presionada durante 1ms la tecla 'S' ord() devuelve el valor que es comparado con waitKey(1) y el programa sale del while
+            break
+
+img = cv.imwrite()
 cap.release()# Liberar la captura de video y cerrar la cámara
 cv.destroyAllWindows() # Cerrar cualquier ventana abierta
+
+#  Mostrar img con todos los objetos
+ 
